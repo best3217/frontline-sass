@@ -1,0 +1,45 @@
+/// Scale a value for any number of properites relative to the viewport width
+/// @group Main
+/// @param {String | List} $properties - Properties to scale
+/// @param {Map} $map - Map of breakpoints and values
+/// @param {Boolean} $initial [true] - Output initial value (not inside media query)
+/// @param {String} $units ['rem'] - Output units
+/// @require {function} fs-rem
+/// @require {function} fs-scale
+/// @require {mixin} fs-min-width
+/// @require {mixin} fs-max-width
+/// @ignore Demo https://www.sassmeister.com/gist/0743396617c2068ed202be11a6c1eb5e
+/// @link http://www.sassmeister.com/gist/7f22e44ace49b5124eec
+/// @link http://madebymike.com.au/writing/precise-control-responsive-typography/
+/// @link https://zellwk.com/blog/viewport-based-typography/
+/// @link http://codepen.io/indrekpaas/pen/VarLaJ?editors=1100
+/// @link http://codepen.io/maranomynet/pen/ozNpXV?editors=1100
+/// @link https://www.smashingmagazine.com/2016/05/fluid-typography/
+/// @link https://github.com/Jakobud/poly-fluid-sizing
+/// @example scss
+///   @include fs-scale(font-size, (320px: 18px, 1024px: 38px));
+/// @example scss
+///   @include fs-scale(margin-bottom margin-top, (
+///     320px: 18px,
+///     768px: 26px,
+///     1024px: 38px
+///   ));
+/// @example scss
+///   @include fs-scale(font-size, (
+///     320px: 18px,
+///     800px: (32px 24px),// scale up from 18px–32px, then reset to 24px at 800px wide and scale up to 38px
+///     1024px: 38px
+///   ));
+/// @example scss
+///   @include fs-scale(font-size, (768px: 26px, 1024px: 38px), $initial: false);
+/// @example scss
+///   @include fs-scale(font-size, (768px: 26px, 1024px: 38px), $units: 'em');
+@mixin fs-scale($args...) {
+  /// TODO: In next major version, rename fs-scale-poly() as fs-scale() and delete this code.
+  @if length($args) > 1 and type-of(nth($args, 2)) == 'map' {
+    @include fs-scale-poly($args...);
+  }
+  @else {
+    @include fs-scale-legacy($args...);
+  }
+}

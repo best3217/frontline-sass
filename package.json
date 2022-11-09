@@ -1,0 +1,57 @@
+{
+  "title": "frontline-sass",
+  "name": "frontline-sass",
+  "version": "3.11.0",
+  "description": "Threespot's base Sass framework",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Threespot/frontline-sass.git"
+  },
+  "main": "dist/_frontline.scss",
+  "author": "Ted Whitehead <ted.whitehead@threespot.com>",
+  "bugs": {
+    "url": "https://github.com/Threespot/frontline-sass/issues"
+  },
+  "keywords": [
+    "sass",
+    "scss",
+    "css",
+    "mixin",
+    "responsive",
+    "threespot"
+  ],
+  "homepage": "https://github.com/Threespot/frontline-sass",
+  "scripts": {
+    "gulp": "gulp",
+    "build": "gulp build",
+    "test": "gulp test",
+    "deploy": "gulp sassdoc && yarn gh-deploy",
+    "gh-deploy": "NODE_DEBUG='gh-pages' gh-pages --dist sassdoc --message 'Automatic SassDoc update'",
+    "lint": "stylelint 'src/**/*.scss'",
+    "npm-patch": "npm version patch --force -m \"version %s\"",
+    "npm-minor": "npm version minor --force -m \"version %s\"",
+    "npm-major": "npm version major --force -m \"version %s\"",
+    "patch": "read -p 'Confirm create new patch (0.0.x) to npm: (y/n) ' -n 1 -r \n if [[ $REPLY =~ ^[Yy]$ ]] \n then \n yarn npm-patch \n fi",
+    "minor": "read -p 'Confirm create new minor version (0.x.0) to npm (y/n) ' -n 1 -r \n if [[ $REPLY =~ ^[Yy]$ ]] \n then \n yarn npm-minor \n fi",
+    "major": "read -p 'Confirm create new major version (x.0.0) to npm (y/n) ' -n 1 -r \n if [[ $REPLY =~ ^[Yy]$ ]] \n then \n yarn npm-major \n fi",
+    "preversion": "yarn lint",
+    "version": "yarn build && yarn gulp sassdoc && git add .",
+    "postversion": "git push && git push --tags"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "gh-pages": "^3.1.0",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssimport": "^7.0.0",
+    "gulp-header": "^2.0.9",
+    "gulp-load-plugins": "^2.0.4",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass": "^4.1.0",
+    "js-yaml": "^4.0.0",
+    "sassdoc": "^2.7.3",
+    "stylelint": "^13.7.2",
+    "stylelint-config-standard": "^20.0.0"
+  },
+  "dependencies": {}
+}

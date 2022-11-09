@@ -1,0 +1,8 @@
+/// Custom easing function
+/// @group Main
+/// @param {String} $name - Name of easing
+/// @return {String} - Easing code
+/// @require {variable} $fs-easings - Custom easing map
+@function fs-easing($name) {
+  @return cubic-bezier(unquote(map-get($fs-easings, $name)));
+}

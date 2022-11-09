@@ -1,0 +1,35 @@
+////
+/// Helper mixins to add various pseudo selectors
+/// @group Selectors
+/// @ignore http://sassmeister.com/gist/35c9c323d22eefdbf293 (by @csswizardry)
+////
+
+/// Helper mixin to apply static pesudo selectors
+@mixin fs-static {
+  &,
+  &:link,
+  &:visited {
+    @content;
+  }
+}
+
+/// Helper mixin to apply `:hover`, `:focus`, and `:active` pesudo selectors
+@mixin fs-attention {
+  &:hover,
+  &:focus,
+  &:active {
+    @content;
+  }
+}
+
+/// Helper mixin to apply all pesudo selectors
+@mixin fs-all-states {
+  &,
+  &:link,
+  &:visited,
+  &:focus,
+  &:hover,
+  &:active {
+    @content;
+  }
+}
